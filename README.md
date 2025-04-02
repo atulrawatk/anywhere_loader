@@ -134,7 +134,7 @@ child: MyApp(),
 
 To start the loader anywhere in your app:
 
-**dart
+```dart
 AnywhereLoader.instance.startLoader(
 text: "Loading data...",
 seconds: 5, // Default is 10 seconds
@@ -142,7 +142,7 @@ fontSize: 18,
 fontColor: Colors.white,
 fontFamily: 'Arial',
 );
-
+```
 
 To stop the loader manually:**
 
