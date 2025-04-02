@@ -104,13 +104,16 @@ A Flutter package that provides an easy-to-use overlay loader using GetX, allowi
 
 Add this to your **pubspec.yaml**:
 
-yaml
+```yaml
 dependencies:
 anywhere_loader: latest_version
+```
 
 
 Then run:
+```
 flutter pub get
+```
 
 
 ## Usage
@@ -119,7 +122,7 @@ flutter pub get
 
 In your `main.dart`, wrap the app with `AnywhereLoader`:
 
-dart
+```dart
 import 'package:flutter/material.dart';
 import 'package:anywhere_loader/anywhere_loader.dart';
 
@@ -128,6 +131,7 @@ runApp(AnywhereLoader(
 child: MyApp(),
 ));
 }
+```
 
 
 ### *2️⃣ Start and Stop Loader*
@@ -146,15 +150,16 @@ fontFamily: 'Arial',
 
 To stop the loader manually:**
 
-dart
+```dart
 AnywhereLoader.instance.stopLoader();
+```
 
 
 ### *3️⃣ Use Custom Loader Widget*
 
 You can replace the default loader with your own widget:
 
-dart
+```dart
 AnywhereLoader.instance.startLoader(
 customWidget: Center(
 child: Column(
@@ -167,6 +172,7 @@ Text("Fetching data...")
 ),
 ),
 );
+```
 
 
 ## License
@@ -174,5 +180,3 @@ Text("Fetching data...")
 This package is released under the MIT License.
 
 ---
-
-Need Help? Create an Issue 🚀
