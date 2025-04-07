@@ -1,6 +1,7 @@
 import 'package:example/new_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:anywhere_loader/anywhere_loader.dart'
+import 'package:anywhere_loader/anywhere_loader.dart';
+import 'package:anywhere_loader/anywhere_loader_context_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,10 +13,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: AnyWhereLoaderContextProvider(
-        child: HomePage(),
-      )
-    );
+        home: AnyWhereLoaderContextProvider(
+      child: HomePage(),
+    ));
   }
 }
 
@@ -51,11 +51,11 @@ class HomePage extends StatelessWidget {
               },
               child: const Text("Run Async Loader"),
             ),
-
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () async {
-                Navigator.push(context, MaterialPageRoute(builder: (_)=> NewScreen()));
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => NewScreen()));
               },
               child: const Text("NextScreen"),
             ),

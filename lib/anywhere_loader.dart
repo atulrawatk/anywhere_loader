@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:ui';
 import 'package:flutter/material.dart';
+
 class AnyWhereLoader {
   static BuildContext? context;
   static final AnyWhereLoader instance = AnyWhereLoader._internal();
@@ -32,6 +33,7 @@ class AnyWhereLoader {
     _isShowing = true;
     _timer = Timer(Duration(seconds: seconds), () => stopLoader());
   }
+
   void stopLoader() {
     if (!_isShowing) return;
     _overlayEntry?.remove();
@@ -39,6 +41,7 @@ class AnyWhereLoader {
     _timer?.cancel();
     _isShowing = false;
   }
+
   Future<void> showAsyncLoader({
     required Future<void> Function() asyncFunction,
     String? text,
@@ -62,6 +65,7 @@ class AnyWhereLoader {
       stopLoader();
     }
   }
+
   OverlayEntry _createOverlay() {
     return OverlayEntry(
       builder: (context) => Positioned.fill(
@@ -83,6 +87,7 @@ class AnyWhereLoader {
       ),
     );
   }
+
   Widget _defaultLoader() {
     return Column(
       mainAxisSize: MainAxisSize.min,

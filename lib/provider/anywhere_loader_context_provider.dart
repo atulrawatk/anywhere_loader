@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import '../anywhere_loader.dart';
+
 class AnyWhereLoaderContextProvider extends StatefulWidget {
   final Widget child;
-  const AnyWhereLoaderContextProvider({Key? key, required this.child}) : super(key: key);
+  const AnyWhereLoaderContextProvider({Key? key, required this.child})
+      : super(key: key);
 
   @override
-  State<AnyWhereLoaderContextProvider> createState() => _AnyWhereLoaderContextProviderState();
+  State<AnyWhereLoaderContextProvider> createState() =>
+      _AnyWhereLoaderContextProviderState();
 }
 
-class _AnyWhereLoaderContextProviderState extends State<AnyWhereLoaderContextProvider> {
+class _AnyWhereLoaderContextProviderState
+    extends State<AnyWhereLoaderContextProvider> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
