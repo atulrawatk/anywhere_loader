@@ -82,7 +82,7 @@ AnywhereLoader.instance.stopLoader();
 ### 3️⃣ Using runWithLoader() (Recommended for async calls)
 Use this method to automatically show a loader while executing any async function like API calls, database operations, etc.
 ```dart
-await AnyWhereLoader.instance.runWithLoader(
+await AnyWhereLoader.instance.showAsyncLoader(
  asyncFunction: () async {
  // Simulate a network call or long task
  await Future.delayed(const Duration(seconds: 5));
