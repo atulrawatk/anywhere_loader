@@ -7,3 +7,6 @@
 
 ## [1.0.2]
 - README Changes
+
+## [1.0.3]
+- Removed GetX dependencies

@@ -1,90 +1,74 @@
 import 'dart:async';
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-class AnyWhereLoader extends GetxController {
-  static final AnyWhereLoader _instance = Get.put(AnyWhereLoader());
-
-  RxBool isLoading = false.obs;
-  RxString loaderText = "".obs;
-  RxDouble fontSize = 16.0.obs;
-  Rx<Color> textColor = Colors.black.obs;
-  RxString fontFamily = ''.obs;
-  Widget? _customWidget;
-  Timer? _timer;
+class AnyWhereLoader {
+  static BuildContext? context;
+  static final AnyWhereLoader instance = AnyWhereLoader._internal();
+  AnyWhereLoader._internal();
   OverlayEntry? _overlayEntry;
-
-  static AnyWhereLoader get instance => _instance;
-
-  /// **📌 Start Loader (Sync)**
+  Timer? _timer;
+  bool _isShowing = false;
+  String? _text;
+  Widget? _customWidget;
+  double? _fontSize;
+  Color? _fontColor;
+  String? _fontFamily;
   void startLoader({
     String? text,
     int seconds = 10,
-    double? customFontSize,
-    Color? customTextColor,
-    String? customFontFamily,
+    double? fontSize,
+    Color? fontColor,
+    String? fontFamily,
     Widget? customWidget,
   }) {
-    if (isLoading.value) return;
-
-    isLoading.value = true;
-    loaderText.value = text ?? "Loading...";
-    fontSize.value = customFontSize ?? 16.0;
-    textColor.value = customTextColor ?? Colors.black;
-    fontFamily.value = customFontFamily ?? '';
+    if (_isShowing) return;
+    _text = text ?? "Loading...";
     _customWidget = customWidget;
-
+    _fontSize = fontSize;
+    _fontColor = fontColor;
+    _fontFamily = fontFamily;
     _overlayEntry = _createOverlay();
-    Overlay.of(Get.overlayContext!).insert(_overlayEntry!);
-
-    _timer?.cancel();
-    _timer = Timer(Duration(seconds: seconds), stopLoader);
+    Overlay.of(context!).insert(_overlayEntry!);
+    _isShowing = true;
+    _timer = Timer(Duration(seconds: seconds), () => stopLoader());
   }
-
-  /// **📌 Start Loader for Async Function**
-  Future<T> runWithLoader<T>({
-    required Future<T> Function() asyncFunction,
+  void stopLoader() {
+    if (!_isShowing) return;
+    _overlayEntry?.remove();
+    _overlayEntry = null;
+    _timer?.cancel();
+    _isShowing = false;
+  }
+  Future<void> showAsyncLoader({
+    required Future<void> Function() asyncFunction,
     String? text,
-    double? customFontSize,
-    Color? customTextColor,
-    String? customFontFamily,
+    int seconds = 10,
+    double? fontSize,
+    Color? fontColor,
+    String? fontFamily,
     Widget? customWidget,
   }) async {
     startLoader(
       text: text,
-      customFontSize: customFontSize,
-      customTextColor: customTextColor,
-      customFontFamily: customFontFamily,
+      seconds: seconds,
+      fontSize: fontSize,
+      fontColor: fontColor,
+      fontFamily: fontFamily,
       customWidget: customWidget,
     );
-
     try {
-      return await asyncFunction();
+      await asyncFunction();
     } finally {
       stopLoader();
     }
   }
-
-  /// **📌 Stop Loader**
-  void stopLoader() {
-    if (!isLoading.value) return;
-    isLoading.value = false;
-    loaderText.value = "";
-    _overlayEntry?.remove();
-    _overlayEntry = null;
-    _timer?.cancel();
-    _customWidget = null;
-  }
-
-  /// **📌 Create Overlay**
   OverlayEntry _createOverlay() {
     return OverlayEntry(
       builder: (context) => Positioned.fill(
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
           child: Container(
-            color: Color.fromARGB((0.3 * 255).toInt(), 0, 0, 0),
+            color: Colors.black.withOpacity(0.3),
             child: Center(
               child: Material(
                 color: Colors.transparent,
@@ -99,23 +83,20 @@ class AnyWhereLoader extends GetxController {
       ),
     );
   }
-
-  /// **📌 Default Loader**
   Widget _defaultLoader() {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         const CircularProgressIndicator(),
         const SizedBox(height: 10),
-        Obx(() => Text(
-              loaderText.value,
-              style: TextStyle(
-                fontSize: fontSize.value,
-                color: textColor.value,
-                fontFamily:
-                    fontFamily.value.isNotEmpty ? fontFamily.value : null,
-              ),
-            )),
+        Text(
+          _text ?? "",
+          style: TextStyle(
+            fontSize: _fontSize ?? 16,
+            color: _fontColor ?? Colors.white,
+            fontFamily: _fontFamily,
+          ),
+        ),
       ],
     );
   }

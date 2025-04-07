@@ -1,6 +1,6 @@
 name: anywhere_loader
-description: "A simple and customizable overlay loader using GetX in Flutter."
-version: 1.0.2
+description: "A lightweight, hassle-free way to show overlay loaders in your Flutter apps."
+version: 1.0.3
 homepage: "https://github.com/atulrawatk/anywhere_loader"
 repository: "https://github.com/atulrawatk/anywhere_loader"
 issue_tracker: "https://github.com/atulrawatk/anywhere_loader/issues"
@@ -13,7 +13,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  get: ^4.6.6
 
 dev_dependencies:
   flutter_test:

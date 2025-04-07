@@ -1,8 +1,6 @@
 # Anywhere Loader
 
-A Flutter package that provides an easy-to-use overlay loader using GetX, allowing users to
-display a loading indicator without manually managing overlays or stacks. The loader supports
-customization such as font size, color, font family, and custom widgets.
+A simple and customizable overlay loader built using Flutter. No need for manual Stack or complex state management—just plug and play with AnywhereLoader.
 
 ## Features
 
@@ -31,18 +29,31 @@ flutter pub get
 
 ## Usage
 
-### 1️⃣ Wrap Your App with `AnywhereLoader`
+### 1️⃣ ⚙️ Setup
 
-In your `main.dart`, wrap the app with `AnywhereLoader`:
+Wrap your screen (not the whole app) inside AnyWhereLoaderContextProvider. This should be placed inside the MaterialApp:
 
 ```dart
 import 'package:flutter/material.dart';
 import 'package:anywhere_loader/anywhere_loader.dart';
 
 void main() {
-  runApp(AnywhereLoader(
-    child: MyApp(),
-  ));
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Anywhere Loader Demo',
+      debugShowCheckedModeBanner: false,
+      home: AnyWhereLoaderContextProvider(
+        child: HomePage(),
+      ),
+    );
+  }
 }
 ```
 
@@ -68,8 +79,22 @@ To stop the loader manually:
 AnywhereLoader.instance.stopLoader();
 ```
 
+### 3️⃣ Using runWithLoader() (Recommended for async calls)
+Use this method to automatically show a loader while executing any async function like API calls, database operations, etc.
+```dart
+await AnyWhereLoader.instance.runWithLoader(
+ asyncFunction: () async {
+ // Simulate a network call or long task
+ await Future.delayed(const Duration(seconds: 5));
+},
+ text: "Loading, please wait...",
+);
+```
+✅ The loader automatically starts and stops.
+💡 Ideal for API calls or tasks where you don’t want to manually call startLoader() and stopLoader().
 
-### 3️⃣ Use Custom Loader Widget
+
+### 4️⃣  Use Custom Loader Widget
 
 You can replace the default loader with your own widget:
 
