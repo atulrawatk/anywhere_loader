@@ -1,7 +1,7 @@
+import 'package:anywhere_loader/provider/anywhere_loader_context_provider.dart';
 import 'package:example/new_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:anywhere_loader/anywhere_loader.dart';
-import 'package:anywhere_loader/anywhere_loader_context_provider.dart';
 
 void main() {
   runApp(const MyApp());

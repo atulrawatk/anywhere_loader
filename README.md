@@ -1,6 +1,6 @@
-# Anywhere Loader
+# ⚡ AnywhereLoader – Effortless Overlay Loader Without Context or Dependencies
 
-A simple and customizable overlay loader built using Flutter. No need for manual Stack or complex state management—just plug and play with AnywhereLoader.
+A lightweight and customizable overlay loader for Flutter. No Stack, no context, no complex state management—just one-line integration to show loaders globally.
 
 ## Features
 

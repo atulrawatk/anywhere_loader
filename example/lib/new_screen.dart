@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:anywhere_loader/anywhere_loader.dart';
-import 'package:anywhere_loader/anywhere_loader_context_provider.dart';
 
 class NewScreen extends StatelessWidget {
   const NewScreen({super.key});

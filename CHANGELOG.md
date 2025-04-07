@@ -13,3 +13,6 @@
 
 ## [1.0.4]
 - README Changes 
+
+## [1.0.5]
+- Removed unwanted references in code and bug fixes 
