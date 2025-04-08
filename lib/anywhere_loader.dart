@@ -32,24 +32,23 @@ class AnyWhereLoader {
   Color _backgroundColor = Colors.black;
   double _opacity = 0.3;
   double _blurSigma = 5.0;
-  bool _isIos=false;
-  double _iosProgressRadius=13;
+  bool _isIos = false;
+  double _iosProgressRadius = 13;
 
   /// Starts the loader with optional customization and timeout
-  void startLoader({
-    String? text,
-    int seconds = 10,
-    double? fontSize,
-    Color? fontColor,
-    String? fontFamily,
-    Widget? customWidget,
-    Color? progressColor,
-    Color? backgroundColor,
-    double? opacity,
-    double? blurSigma,
-    bool? isIos,
-    double? iosProgressRadius
-  }) {
+  void startLoader(
+      {String? text,
+      int seconds = 10,
+      double? fontSize,
+      Color? fontColor,
+      String? fontFamily,
+      Widget? customWidget,
+      Color? progressColor,
+      Color? backgroundColor,
+      double? opacity,
+      double? blurSigma,
+      bool? isIos,
+      double? iosProgressRadius}) {
     if (_isShowing) return; // Prevent duplicate loaders
 
     // Set loader content and styles
@@ -62,8 +61,8 @@ class AnyWhereLoader {
     _backgroundColor = backgroundColor ?? Colors.black;
     _opacity = opacity ?? 0.3;
     _blurSigma = blurSigma ?? 5.0;
-    _isIos=isIos??false;
-    _iosProgressRadius=iosProgressRadius??13;
+    _isIos = isIos ?? false;
+    _iosProgressRadius = iosProgressRadius ?? 13;
     // Create and show the overlay
     _overlayEntry = _createOverlay();
     Overlay.of(context!).insert(_overlayEntry!);
@@ -121,9 +120,11 @@ class AnyWhereLoader {
     return OverlayEntry(
       builder: (context) => Positioned.fill(
         child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: _blurSigma, sigmaY: _blurSigma), // Blur effect
+          filter: ImageFilter.blur(
+              sigmaX: _blurSigma, sigmaY: _blurSigma), // Blur effect
           child: Container(
-            color: _backgroundColor.withAlpha((_opacity.clamp(0.0, 1.0) * 255).toInt()), // Custom opacity
+            color: _backgroundColor.withAlpha(
+                (_opacity.clamp(0.0, 1.0) * 255).toInt()), // Custom opacity
             child: Center(
               child: Material(
                 color: Colors.transparent,
@@ -143,14 +144,14 @@ class AnyWhereLoader {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          _isIos?
-          CupertinoActivityIndicator(
-            radius: _iosProgressRadius,
-            color: _progressColor,
-          )
-              :CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(_progressColor),
-          ),
+          _isIos
+              ? CupertinoActivityIndicator(
+                  radius: _iosProgressRadius,
+                  color: _progressColor,
+                )
+              : CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(_progressColor),
+                ),
           const SizedBox(height: 10),
           Text(
             _text ?? "",

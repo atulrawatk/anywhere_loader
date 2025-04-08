@@ -33,8 +33,7 @@ class HomePage extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () {
-                AnyWhereLoader.instance.startLoader(
-                );
+                AnyWhereLoader.instance.startLoader();
                 Future.delayed(const Duration(seconds: 3), () {
                   AnyWhereLoader.instance.stopLoader();
                 });
