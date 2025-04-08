@@ -24,9 +24,7 @@ class _AnyWhereLoaderContextProviderState
     super.didChangeDependencies();
 
     // Capture and store the context for overlay use if not already set
-    if (AnyWhereLoader.context == null) {
-      AnyWhereLoader.context = context;
-    }
+    AnyWhereLoader.context ??= context;
   }
 
   @override
