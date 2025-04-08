@@ -1,7 +1,7 @@
-import 'package:anywhere_loader/provider/anywhere_loader_context_provider.dart';
-import 'package:example/new_screen.dart';
 import 'package:flutter/material.dart';
+import 'new_screen.dart';
 import 'package:anywhere_loader/anywhere_loader.dart';
+import 'package:anywhere_loader/provider/anywhere_loader_context_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,7 +33,8 @@ class HomePage extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () {
-                AnyWhereLoader.instance.startLoader(text: "Please wait...");
+                AnyWhereLoader.instance.startLoader(
+                );
                 Future.delayed(const Duration(seconds: 3), () {
                   AnyWhereLoader.instance.stopLoader();
                 });

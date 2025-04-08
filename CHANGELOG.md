@@ -16,3 +16,10 @@
 
 ## [1.0.5]
 - Removed unwanted references in code and bug fixes 
+
+## [1.0.6]
+- ✅ Blur effect
+- ✅ Background color and opacity
+- ✅ Cupertino (iOS) & Material (Android) progress indicators
+- ✅ Loader text styling
+- ✅ Progress indicator color

@@ -1,6 +1,6 @@
 name: anywhere_loader
 description: "A lightweight, hassle-free way to show overlay loaders in your Flutter apps."
-version: 1.0.5
+version: 1.0.6
 homepage: "https://github.com/atulrawatk/anywhere_loader"
 repository: "https://github.com/atulrawatk/anywhere_loader"
 issue_tracker: "https://github.com/atulrawatk/anywhere_loader/issues"

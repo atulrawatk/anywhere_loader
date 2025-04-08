@@ -79,7 +79,7 @@ To stop the loader manually:
 AnywhereLoader.instance.stopLoader();
 ```
 
-### 3️⃣ Using runWithLoader() (Recommended for async calls)
+### 3️⃣ Using showAsyncLoader() (Recommended for async calls)
 Use this method to automatically show a loader while executing any async function like API calls, database operations, etc.
 ```dart
 await AnyWhereLoader.instance.showAsyncLoader(
@@ -113,6 +113,32 @@ AnywhereLoader.instance.startLoader(
 );
 
 ```
+
+### 5️⃣ 🍎 Customization for iOS (Cupertino Loader)
+You can enable a native iOS-style progress indicator using the isIos: true flag. You can also customize its radius.
+
+```dart
+ElevatedButton(
+  onPressed: () {
+    AnyWhereLoader.instance.startLoader(
+      blurSigma: 5,
+        backgroundColor: Colors.black,
+        opacity: 0.5,
+        isIos: true,              // 👈 Enables CupertinoActivityIndicator
+        iosProgressRadius: 20,    // 👈 Customize the radius of the Cupertino spinner
+        progressColor: Colors.blue, // 👈 Optional color for the Cupertino spinner
+        );
+
+        Future.delayed(const Duration(seconds: 3), () {
+          AnyWhereLoader.instance.stopLoader();
+        });
+    },
+    child: const Text("Show Loader"),
+    );
+```
+✅ CupertinoActivityIndicator gives a native iOS feel
+🎛️ Use isIos: false (default) to switch back to Material spinner
+🎯 Great for iOS-specific UI consistency
 
 
 ## License
